@@ -1,158 +1,192 @@
 # 📸 Instagram Mini Clone
 
-> A full-stack social media application inspired by Instagram, built with **React, Node.js, Express.js, and MongoDB**, featuring JWT authentication, user follow systems, posts, likes, comments, and personalized feeds.
+<p align="center">
+  <b>A full-stack social media application inspired by Instagram</b>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Backend-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
+  <img src="https://img.shields.io/badge/API-Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Auth-JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Styling-CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Testing-Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Build-Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
+</p>
 
 ---
 
-## 🚀 Project Overview
+## 🌟 Overview
 
-**Instagram Mini Clone** is a full-stack social media application developed to demonstrate the implementation of a modern web application's **frontend, backend, REST APIs, authentication, database relationships, and social-media features**.
+**Instagram Mini Clone** is a full-stack social media application built to demonstrate the development of a modern web application using **React, Node.js, Express.js, and MongoDB**.
 
-The application allows users to:
+The project implements core social-media functionality including **user authentication, follow/unfollow relationships, post creation, likes, comments, and personalized feeds**.
 
-* 🔐 Register and log in securely
-* 👤 Manage user relationships
-* ➕ Follow and unfollow users
-* 📸 Create posts
-* ❤️ Like and unlike posts
-* 💬 Add comments
-* 📰 View posts from followed users
-* 🔑 Authenticate API requests using JWT
+It also demonstrates how a React frontend communicates with a Node.js REST API and how user authentication can be handled using **JWT tokens**.
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-### 🔐 User Authentication
+| Feature              | Description                           |
+| -------------------- | ------------------------------------- |
+| 🔐 Authentication    | User signup and login with JWT        |
+| 🔒 Password Security | Password hashing with bcryptjs        |
+| 👤 User System       | User accounts and relationships       |
+| ➕ Follow             | Follow other users                    |
+| ➖ Unfollow           | Remove following relationships        |
+| 📸 Posts             | Create posts with images and captions |
+| ❤️ Likes             | Like and unlike posts                 |
+| 💬 Comments          | Add comments to posts                 |
+| 📰 Feed              | View posts from followed users        |
+| 🔑 Protected APIs    | JWT-based route protection            |
+| 🔗 REST APIs         | Structured backend API architecture   |
 
-* User registration
-* User login
-* Password hashing using `bcryptjs`
-* JWT-based authentication
-* Protected API routes
-* Token-based frontend authentication
+---
 
-### 👥 Follow System
+# 🏗️ Application Architecture
 
-* Follow users
-* Unfollow users
-* Store followers and following relationships
-* Personalized feed based on followed users
+```text
+                    ┌───────────────────────┐
+                    │      React Frontend   │
+                    │       Vite + Axios    │
+                    └───────────┬───────────┘
+                                │
+                                │ HTTP / REST API
+                                ▼
+                    ┌───────────────────────┐
+                    │      Express.js       │
+                    │       Node.js         │
+                    └───────────┬───────────┘
+                                │
+               ┌────────────────┼────────────────┐
+               │                │                │
+               ▼                ▼                ▼
+        Authentication      User System      Post System
+               │                │                │
+               ▼                ▼                ▼
+             JWT          Follow/Unfollow    Like/Comment
+                                │                │
+                                └───────┬────────┘
+                                        ▼
+                              ┌──────────────────┐
+                              │     MongoDB      │
+                              │    Mongoose ODM  │
+                              └──────────────────┘
+```
 
-### 📸 Post Management
+---
 
-* Create posts
-* Store image URLs
-* Add captions
-* Associate posts with users
-* Display posts in the user's feed
+# 🔐 Authentication Flow
 
-### ❤️ Likes
+```text
+                   SIGNUP
+                     │
+                     ▼
+              User Credentials
+                     │
+                     ▼
+              bcryptjs Hashing
+                     │
+                     ▼
+              MongoDB User
+```
 
-* Like posts
-* Unlike posts
-* Prevent duplicate likes using MongoDB `$addToSet`
+```text
+                    LOGIN
+                      │
+                      ▼
+                Find User
+                      │
+                      ▼
+              Verify Password
+                      │
+                      ▼
+                 Generate JWT
+                      │
+                      ▼
+              Frontend Token
+                      │
+                      ▼
+             Protected API Calls
+```
 
-### 💬 Comments
+---
 
-* Add comments to posts
-* Associate comments with users
-* Store comment text
+# 📰 Feed Flow
 
-### 📰 Personalized Feed
-
-The feed API retrieves posts created by users that the authenticated user follows.
+The personalized feed is generated using the authenticated user's following list.
 
 ```text
 Logged-in User
-      ↓
-Following List
-      ↓
-Find Posts
-      ↓
+      │
+      ▼
+Following Users
+      │
+      ▼
+Find Their Posts
+      │
+      ▼
 Populate User & Comments
-      ↓
+      │
+      ▼
 Personalized Feed
 ```
 
 ---
 
-## 🛠️ Tech Stack
-
-### Backend
-
-* **Node.js**
-* **Express.js**
-* **MongoDB**
-* **Mongoose**
-* **JWT Authentication**
-* **bcryptjs**
-* **CORS**
-* **dotenv**
+# 🛠️ Tech Stack
 
 ### Frontend
 
-* **React**
-* **Vite**
-* **Axios**
-* **React Router**
+* ⚛️ React
+* ⚡ Vite
+* 🔗 Axios
+* 🧭 React Router
+* 🎨 CSS
 
-### Development Tools
+### Backend
 
-* **Git & GitHub**
-* **Postman**
-* **VS Code**
-* **MongoDB**
+* 🟢 Node.js
+* 🚂 Express.js
+* 🍃 Mongoose
+* 🔐 JSON Web Token
+* 🔒 bcryptjs
+* 🌐 CORS
+* ⚙️ dotenv
 
----
+### Database
 
-## 🏗️ Project Architecture
+* 🍃 MongoDB
 
-```text
-                         ┌──────────────────────┐
-                         │      React UI        │
-                         │   Vite + Axios       │
-                         └──────────┬───────────┘
-                                    │
-                                    │ REST API
-                                    ▼
-                         ┌──────────────────────┐
-                         │    Express.js API    │
-                         │      Node.js         │
-                         └──────────┬───────────┘
-                                    │
-                    ┌───────────────┼───────────────┐
-                    │               │               │
-                    ▼               ▼               ▼
-              Authentication    User System     Post System
-                    │               │               │
-                    ▼               ▼               ▼
-                  JWT          Follow/Unfollow   Like/Comment
-                                    │               │
-                                    └───────┬───────┘
-                                            ▼
-                                  ┌──────────────────┐
-                                  │     MongoDB      │
-                                  │    Mongoose      │
-                                  └──────────────────┘
-```
+### Development & Testing
+
+* Git
+* GitHub
+* Postman
+* VS Code
 
 ---
 
-## 📁 Suggested Project Structure
+# 📁 Project Structure
 
 ```text
 Instagram-Mini-Clone/
 │
-├── backend/
-│   ├── middleware/
+├── 📂 backend/
+│   │
+│   ├── 📂 middleware/
 │   │   └── auth.js
 │   │
-│   ├── models/
+│   ├── 📂 models/
 │   │   ├── User.js
 │   │   └── Post.js
 │   │
-│   ├── routes/
+│   ├── 📂 routes/
 │   │   ├── auth.js
 │   │   ├── user.js
 │   │   └── post.js
@@ -161,16 +195,17 @@ Instagram-Mini-Clone/
 │   ├── package.json
 │   └── .env
 │
-├── frontend/
-│   ├── src/
+├── 📂 frontend/
+│   │
+│   ├── 📂 src/
 │   │   ├── api.js
-│   │   ├── components/
-│   │   └── pages/
+│   │   ├── 📂 components/
+│   │   └── 📂 pages/
 │   │
 │   ├── package.json
 │   └── ...
 │
-├── postman/
+├── 📂 postman/
 │   └── Instagram-Mini-Clone.postman_collection.json
 │
 └── README.md
@@ -178,9 +213,99 @@ Instagram-Mini-Clone/
 
 ---
 
+# 🗄️ Database Design
+
+## 👤 User Collection
+
+| Field       | Type     | Description           |
+| ----------- | -------- | --------------------- |
+| `_id`       | ObjectId | Unique user ID        |
+| `username`  | String   | Username              |
+| `email`     | String   | User email            |
+| `password`  | String   | Hashed password       |
+| `followers` | Array    | IDs of followers      |
+| `following` | Array    | IDs of followed users |
+
+### Relationship
+
+```text
+                 ┌─────────────┐
+                 │    User     │
+                 └──────┬──────┘
+                        │
+              ┌─────────┴─────────┐
+              ▼                   ▼
+        followers[]          following[]
+```
+
+The follower/following system represents a **many-to-many relationship** between users.
+
+---
+
+## 📸 Post Collection
+
+| Field       | Type     | Description            |
+| ----------- | -------- | ---------------------- |
+| `_id`       | ObjectId | Unique post ID         |
+| `user`      | ObjectId | Post owner             |
+| `image`     | String   | Image URL              |
+| `caption`   | String   | Post caption           |
+| `likes`     | Array    | IDs of users who liked |
+| `comments`  | Array    | Post comments          |
+| `createdAt` | Date     | Creation time          |
+| `updatedAt` | Date     | Last update time       |
+
+### Relationship
+
+```text
+              ┌─────────────┐
+              │    User     │
+              └──────┬──────┘
+                     │
+                     │ 1 : N
+                     ▼
+              ┌─────────────┐
+              │    Posts    │
+              └──────┬──────┘
+                     │
+              ┌──────┴──────┐
+              ▼             ▼
+           Likes         Comments
+```
+
+---
+
+# 🌐 REST API
+
+## 🔐 Authentication
+
+| Method | Endpoint           | Description           |
+| ------ | ------------------ | --------------------- |
+| `POST` | `/api/auth/signup` | Register a new user   |
+| `POST` | `/api/auth/login`  | Login and receive JWT |
+
+## 👥 Users
+
+| Method | Endpoint                  | Description     |
+| ------ | ------------------------- | --------------- |
+| `POST` | `/api/users/follow/:id`   | Follow a user   |
+| `POST` | `/api/users/unfollow/:id` | Unfollow a user |
+
+## 📸 Posts
+
+| Method | Endpoint                 | Description           |
+| ------ | ------------------------ | --------------------- |
+| `POST` | `/api/posts`             | Create a post         |
+| `POST` | `/api/posts/like/:id`    | Like a post           |
+| `POST` | `/api/posts/unlike/:id`  | Unlike a post         |
+| `POST` | `/api/posts/comment/:id` | Add a comment         |
+| `GET`  | `/api/posts/feed`        | Get personalized feed |
+
+---
+
 # ⚙️ Backend Setup
 
-## 1. Create Backend
+### 1. Create the backend
 
 ```bash
 mkdir backend
@@ -188,19 +313,19 @@ cd backend
 npm init -y
 ```
 
-## 2. Install Dependencies
+### 2. Install dependencies
 
 ```bash
 npm install express mongoose bcryptjs jsonwebtoken cors dotenv
 ```
 
-## 3. Start the Backend
+### 3. Start the server
 
 ```bash
 node server.js
 ```
 
-The backend runs on:
+Backend:
 
 ```text
 http://localhost:5000
@@ -208,22 +333,9 @@ http://localhost:5000
 
 ---
 
-## 🔐 Environment Variables
-
-Create a `.env` file inside the backend directory:
-
-```env
-MONGO_URI=your_mongodb_url
-JWT_SECRET=your_secret_key
-```
-
-> ⚠️ Never commit your real MongoDB connection string or JWT secret to GitHub.
-
----
-
 # 💻 Frontend Setup
 
-Create the React application using Vite:
+Create the React application:
 
 ```bash
 npm create vite@latest frontend -- --template react
@@ -241,7 +353,7 @@ Install dependencies:
 npm install axios react-router-dom
 ```
 
-Start the development server:
+Run the application:
 
 ```bash
 npm run dev
@@ -249,188 +361,83 @@ npm run dev
 
 ---
 
-# 🔌 API Configuration
+# 🔑 Environment Configuration
 
-The frontend communicates with the backend through Axios.
+Create `.env` inside the backend directory:
+
+```env
+MONGO_URI=your_mongodb_url
+JWT_SECRET=your_secret_key
+```
+
+> ⚠️ **Never commit real API keys, database credentials, or secrets to GitHub.**
+
+---
+
+# 🔗 Axios Configuration
+
+The frontend uses Axios to communicate with the backend.
 
 ```javascript
+import axios from 'axios';
+
 const API = axios.create({
   baseURL: 'http://localhost:5000/api'
 });
+
+API.interceptors.request.use(req => {
+  const token = localStorage.getItem('token');
+
+  if (token) {
+    req.headers.authorization = token;
+  }
+
+  return req;
+});
+
+export default API;
 ```
-
-The Axios interceptor automatically attaches the authentication token to API requests.
-
-```text
-React Application
-       ↓
-     Axios
-       ↓
-JWT Token
-       ↓
-Express API
-       ↓
-MongoDB
-```
-
----
-
-# 🔑 Authentication Flow
-
-```text
-User Signup
-     ↓
-Password received
-     ↓
-bcrypt password hashing
-     ↓
-User stored in MongoDB
-```
-
-For login:
-
-```text
-User Login
-     ↓
-Check email
-     ↓
-Compare password using bcrypt
-     ↓
-Generate JWT
-     ↓
-Return token
-     ↓
-Store token on frontend
-```
-
-Protected requests use the JWT token for authentication.
-
----
-
-# 🗄️ Database Design
-
-## User Collection
-
-| Field       | Type     | Description                 |
-| ----------- | -------- | --------------------------- |
-| `_id`       | ObjectId | Unique user ID              |
-| `username`  | String   | Username                    |
-| `email`     | String   | User email                  |
-| `password`  | String   | Hashed password             |
-| `followers` | Array    | IDs of followers            |
-| `following` | Array    | IDs of users being followed |
-
-### Relationship
-
-```text
-User
- ├── followers[]
- └── following[]
-```
-
-The follower/following system represents a **many-to-many relationship** between users.
-
----
-
-## Post Collection
-
-| Field       | Type     | Description                     |
-| ----------- | -------- | ------------------------------- |
-| `_id`       | ObjectId | Unique post ID                  |
-| `user`      | ObjectId | Post owner                      |
-| `image`     | String   | Image URL                       |
-| `caption`   | String   | Post caption                    |
-| `likes`     | Array    | IDs of users who liked the post |
-| `comments`  | Array    | Post comments                   |
-| `createdAt` | Date     | Creation timestamp              |
-| `updatedAt` | Date     | Last update timestamp           |
-
-### Relationships
-
-```text
-User
-  │
-  └──────< Posts
-           │
-           ├── Likes
-           │
-           └── Comments
-```
-
-One user can create multiple posts, representing a **one-to-many relationship**.
-
----
-
-# 🌐 REST API Documentation
-
-## 🔐 Authentication APIs
-
-| Method | Endpoint           | Description           |
-| ------ | ------------------ | --------------------- |
-| `POST` | `/api/auth/signup` | Register a new user   |
-| `POST` | `/api/auth/login`  | Login and receive JWT |
-
----
-
-## 👥 User APIs
-
-| Method | Endpoint                  | Description     |
-| ------ | ------------------------- | --------------- |
-| `POST` | `/api/users/follow/:id`   | Follow a user   |
-| `POST` | `/api/users/unfollow/:id` | Unfollow a user |
-
----
-
-## 📸 Post APIs
-
-| Method | Endpoint                 | Description                   |
-| ------ | ------------------------ | ----------------------------- |
-| `POST` | `/api/posts`             | Create a post                 |
-| `POST` | `/api/posts/like/:id`    | Like a post                   |
-| `POST` | `/api/posts/unlike/:id`  | Unlike a post                 |
-| `POST` | `/api/posts/comment/:id` | Add a comment                 |
-| `GET`  | `/api/posts/feed`        | Get posts from followed users |
 
 ---
 
 # 🧪 Postman Testing
 
-The API can be tested using **Postman**.
+The backend REST APIs can be tested using **Postman**.
 
-Recommended request flow:
+Recommended testing sequence:
 
 ```text
-1. Signup
-   ↓
-2. Login
-   ↓
-3. Store JWT Token
-   ↓
-4. Create Post
-   ↓
-5. Follow User
-   ↓
-6. Like Post
-   ↓
-7. Add Comment
-   ↓
-8. Get Personalized Feed
+1️⃣ Signup
+     ↓
+2️⃣ Login
+     ↓
+3️⃣ Save JWT Token
+     ↓
+4️⃣ Create Post
+     ↓
+5️⃣ Follow User
+     ↓
+6️⃣ Like Post
+     ↓
+7️⃣ Add Comment
+     ↓
+8️⃣ Get Feed
 ```
 
 ### Suggested Postman Collection
 
 ```text
-Instagram Mini Clone
+📦 Instagram Mini Clone
 │
-├── Authentication
+├── 🔐 Authentication
 │   ├── Signup
 │   └── Login
 │
-├── Users
+├── 👥 Users
 │   ├── Follow
 │   └── Unfollow
 │
-└── Posts
+└── 📸 Posts
     ├── Create Post
     ├── Like Post
     ├── Unlike Post
@@ -440,67 +447,121 @@ Instagram Mini Clone
 
 ---
 
-# 🧠 Core Backend Logic
+# 🧠 Key Technical Concepts Demonstrated
 
-### Create Post
-
-```text
-Authenticated User
-       ↓
-JWT Verification
-       ↓
-Extract User ID
-       ↓
-Create Post
-       ↓
-Store in MongoDB
-```
-
-### Like Post
+This project demonstrates practical implementation of:
 
 ```text
-User
- ↓
+React
+  ↓
+REST APIs
+  ↓
+Node.js + Express
+  ↓
 JWT Authentication
- ↓
-Post ID
- ↓
-$addToSet
- ↓
-Like Added
+  ↓
+MongoDB + Mongoose
+  ↓
+Database Relationships
+  ↓
+Social Media Features
 ```
 
-### Unlike Post
+### Core Concepts
 
-```text
-User
- ↓
-JWT Authentication
- ↓
-Post ID
- ↓
-$pull
- ↓
-Like Removed
-```
-
-### Personalized Feed
-
-```text
-Authenticated User
-        ↓
-Find Following List
-        ↓
-Find Posts
-        ↓
-Populate User & Comments
-        ↓
-Return Feed
-```
+* REST API development
+* Authentication & authorization
+* Password hashing
+* JWT token management
+* Middleware
+* MongoDB schema design
+* Mongoose relationships
+* CRUD operations
+* React state management
+* Axios API integration
+* Protected routes
+* API testing
 
 ---
 
-# 📊 GitHub Stats
+# 📸 Screenshots / Demo
+
+> Add your application screenshots here once available.
+
+Example:
+
+```markdown
+![Login Page](screenshots/login.png)
+
+![Feed Page](screenshots/feed.png)
+
+![Profile Page](screenshots/profile.png)
+```
+
+Recommended screenshots:
+
+* 🔐 Login / Signup
+* 📰 Home Feed
+* 📸 Create Post
+* 👤 User Profile
+* ❤️ Likes & Comments
+* 👥 Follow / Unfollow
+
+---
+
+# 🎯 Learning Outcomes
+
+Through this project, I gained practical experience in:
+
+* Building full-stack web applications
+* Designing REST APIs
+* Working with MongoDB and Mongoose
+* Implementing JWT authentication
+* Securing passwords with bcryptjs
+* Connecting React with backend APIs
+* Designing relational data structures in MongoDB
+* Testing APIs with Postman
+* Structuring a scalable backend
+* Using Git and GitHub for project management
+
+---
+
+# 🔮 Future Improvements
+
+* 📱 Fully responsive Instagram-style UI
+* 🖼️ Cloud-based image uploads
+* 👤 Complete user profile pages
+* 🔍 User and post search
+* 🔔 Real-time notifications
+* 💬 Real-time messaging
+* 📝 Edit and delete posts
+* ❤️ Interactive like/unlike UI
+* 📄 Pagination and infinite scrolling
+* 🛡️ Improved validation and error handling
+* ☁️ Cloud deployment
+* 🐳 Docker containerization
+
+---
+
+# 👨‍💻 Author
+
+### Harshit Shringi
+
+**B.Tech Computer Science Engineering**
+Medicaps University, Indore
+
+<p align="left">
+  <a href="https://github.com/harshitshringi2005-git">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
+  <a href="https://www.linkedin.com/in/harshitshringi">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+</p>
+
+---
+
+## 📊 GitHub Stats
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=harshitshringi2005-git&show_icons=true&include_all_commits=true&count_private=true&hide_border=true" height="180"/>
@@ -509,61 +570,10 @@ Return Feed
 
 ---
 
-# 🎯 Learning Outcomes
+<p align="center">
+  ⭐ <b>If you found this project useful, consider giving it a star!</b>
+</p>
 
-This project demonstrates practical experience with:
-
-* Full-stack application development
-* REST API development
-* Node.js and Express.js
-* MongoDB database design
-* Mongoose ODM
-* JWT authentication
-* Password hashing
-* React frontend development
-* Axios API integration
-* React Router
-* MongoDB relationships
-* CRUD operations
-* Social-media application logic
-* API testing with Postman
-* Git and GitHub
-
----
-
-# 🔮 Future Improvements
-
-Possible improvements include:
-
-* 📱 Responsive Instagram-style UI
-* 🖼️ Image upload using cloud storage
-* 🔔 Real-time notifications
-* 💬 Real-time messaging
-* 🔍 User and post search
-* ❤️ Like/unlike toggle on frontend
-* 👤 User profile pages
-* 📝 Edit and delete posts
-* 🛡️ Improved API error handling
-* 📄 Pagination and infinite scrolling
-* ☁️ Cloud deployment
-* 🐳 Docker support
-
----
-
-# 👨‍💻 Author
-
-**Harshit Shringi**
-
-B.Tech Computer Science Engineering
-Medicaps University, Indore
-
-### Connect With Me
-
-* 💻 GitHub: `https://github.com/harshitshringi2005-git`
-* 💼 LinkedIn: `https://www.linkedin.com/in/harshitshringi`
-
----
-
-⭐ If you found this project useful, consider giving the repository a **star**!
-
----
+<p align="center">
+  Built with ❤️ using React, Node.js, Express.js & MongoDB
+</p>
