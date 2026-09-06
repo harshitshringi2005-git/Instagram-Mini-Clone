@@ -484,30 +484,7 @@ Social Media Features
 
 ---
 
-# 📸 Screenshots / Demo
 
-> Add your application screenshots here once available.
-
-Example:
-
-```markdown
-![Login Page](screenshots/login.png)
-
-![Feed Page](screenshots/feed.png)
-
-![Profile Page](screenshots/profile.png)
-```
-
-Recommended screenshots:
-
-* 🔐 Login / Signup
-* 📰 Home Feed
-* 📸 Create Post
-* 👤 User Profile
-* ❤️ Likes & Comments
-* 👥 Follow / Unfollow
-
----
 
 # 🎯 Learning Outcomes
 
